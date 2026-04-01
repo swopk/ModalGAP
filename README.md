@@ -2,9 +2,8 @@
 
 Most studies on healthcare accessibility ask a straightforward question: which areas have poor access to hospitals and clinics? This project asks a different one. In a city like Calgary, transit generally provides better healthcare access than walking. But that gap between what transit users can reach and what pedestrians can reach is not evenly distributed. Some areas have a large gap, others a small one. The question this project investigates is: **which socioeconomic groups are most penalized by that gap, and where are they concentrated?**
 
-Modal Access Gap (MAG) is used in literature as a metric measuring the disparity in accessibility between private vehicles and public transport to key destinations. 
+Modal Access Gap (MAG) is used in literature as a metric measuring the disparity in accessibility between private vehicles and public transport to key destinations. Here in this project, MAG is seen as the difference between a dissemination block's walking-mode and transit-peak-mode healthcare accessibility scores, both drawn from Statistics Canada's 2024 Spatial Access Measures dataset. A strongly negative MAG means transit provides substantially better healthcare access than walking in that block, so residents who cannot use transit, whether due to cost, disability, or geography, face compounded disadvantage. 
 
-Here in this project, MAG is seen as the difference between a dissemination block's walking-mode and transit-peak-mode healthcare accessibility scores, both drawn from Statistics Canada's 2024 Spatial Access Measures dataset. A strongly negative MAG means transit provides substantially better healthcare access than walking in that block, so residents who cannot use transit, whether due to cost, disability, or geography, face compounded disadvantage.
 ---
 ## Data
 
@@ -17,6 +16,7 @@ All data used in this project is publicly available from the Government of Canad
 **2021 Census Dissemination Block boundary shapefile** — national cartographic boundary file used for all spatial operations and mapping. Dissemination area boundaries were derived by dissolving block-level geometries. https://www12.statcan.gc.ca/census-recensement/2021/geo/sip-pis/boundary-limites/index2021-eng.cfm?year=21
 
 The study area is the Calgary Census Metropolitan Area (CMA code 825), covering approx. 11,251 dissemination blocks across 1,898 dissemination areas.
+
 ---
 ## Methods
 
@@ -31,6 +31,7 @@ MAG values were aggregated from block to dissemination area level by taking the 
 **Spatial analysis** employed Getis-Ord Gi* local spatial autocorrelation with Queen contiguity weights and 999 permutations to identify statistically significant clusters of high and low MAG. Global Moran's I was computed to characterize the overall spatial structure of the MAG distribution.
 
 **Machine learning** used an XGBoost binary classifier to predict worst-quartile MAG membership (Q4 vs Q1–Q3) from four CIMD deprivation dimension scores plus two urban morphology features (block count and intra-DA MAG standard deviation). The transport access level features were deliberately excluded to avoid data leakage as the goal is to predict access inequality from socioeconomic characteristics, not to reconstruct MAG from its own inputs. Model performance was evaluated using 5-fold stratified cross-validation. SHAP values were computed to decompose feature contributions, with pairwise interaction values used to test for non-linear amplification effects between deprivation dimensions.
+
 ---
 ## Results
 **The MAG distribution is universally negative across Calgary CMA.** Of 10,195 blocks with valid transit scores, 99.9% show worse walking access than transit access for healthcare facilities. The mean MAG is −0.059 (range: −0.237 to +0.065). 
@@ -46,9 +47,9 @@ MAG values were aggregated from block to dissemination area level by taking the 
 **CIMD-only model AUC = 0.725.** Deprivation dimensions alone explain a meaningful share of modal access inequality. Adding urban morphology features raises AUC to 0.817, indicating that DA-level spatial structure contributes independent predictive information beyond socioeconomic composition.
 
 **The strongest pairwise SHAP interaction** is between residential instability and economic dependency (interaction strength = 0.092), suggesting that areas combining housing precarity with income poverty face non-linear amplification of modal access disadvantage beyond what either dimension predicts independently.
+
 ---
 ## Figures
-
 | `Fig1_MAG_choropleth_DB.png` | Block-level MAG map with transit-void zones |
 | `Fig2_CIMD_4panel.png` | Four CIMD deprivation dimensions across Calgary CMA |
 | `Fig3_bivariate_MAG_EconDep.png` | Bivariate map: MAG × economic dependency |
@@ -62,10 +63,11 @@ MAG values were aggregated from block to dissemination area level by taking the 
 | `Fig11_SHAP_waterfall.png` | Individual DA explanations |
 | `Fig12_SHAP_interaction_heatmap.png` | Pairwise SHAP interaction strengths |
 | `Fig13_SHAP_CIMD_only_beeswarm.png` | SHAP beeswarm — deprivation features only |
+
 ---
 ## Limitations
+The SAM 2024 assumes a uniform traveller profile: fixed walking speed, standard stop access distances, no account for terrain, disability, or trip chaining. This likely understates access deficits for elderly and mobility-impaired populations, who are captured in the situational vulnerability CIMD dimension but whose transport constraints are not fully reflected in the accessibility scores. Additionally, dissemination area aggregation of CIMD scores introduces modifiable areal unit effects that may  amplify observed correlations. The analysis is cross-sectional and cannot establish causal direction between deprivation and access inequality.
 
-The SAM 2024 assumes a uniform traveller profile: fixed walking speed, standard stop access distances, no account for terrain, disability, or trip chaining. This likely understates access deficits for elderly and mobility-impaired populations, who are captured in the situational vulnerability CIMD dimension but whose transport constraints are not fully reflected in the accessibility scores. Additionally, dissemination area aggregation of CIMD scores introduces modifiable areal unit effects that may attenuate or amplify observed correlations. The analysis is cross-sectional and cannot establish causal direction between deprivation and access inequality.
 ---
 ## Project Stage
 
