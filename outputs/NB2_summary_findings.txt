@@ -1,0 +1,5 @@
+                    Dimension  Pearson r  Pearson p  Spearman rho  Spearman p Significant
+0     Residential instability    -0.5105     0.0000       -0.4869      0.0000         yes
+1         Economic dependency     0.0398     0.0937        0.0034      0.8858          no
+2   Situational vulnerability    -0.1161     0.0000       -0.1598      0.0000         yes
+3  Ethno-cultural composition     0.0196     0.4090        0.0095      0.6887          no
