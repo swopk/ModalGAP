@@ -50,6 +50,7 @@ MAG values were aggregated from block to dissemination area level by taking the 
 
 ---
 ## Figures
+
 | `Fig1_MAG_choropleth_DB.png` | Block-level MAG map with transit-void zones |
 | `Fig2_CIMD_4panel.png` | Four CIMD deprivation dimensions across Calgary CMA |
 | `Fig3_bivariate_MAG_EconDep.png` | Bivariate map: MAG × economic dependency |
@@ -71,6 +72,11 @@ The SAM 2024 assumes a uniform traveller profile: fixed walking speed, standard 
 ---
 ## Project Stage
 
-**Paper pre-print under development**
+**Paper pre-print under development** 
+
 **will include national-level analysis**
+
 **comparison with other ML models for ROC-AUC to be added**
+
+![alt text](Fig4_Gi_hotspot_MAG.png)
+![alt text](Fig9_SHAP_bar.png)
