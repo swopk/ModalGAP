@@ -50,7 +50,8 @@ MAG values were aggregated from block to dissemination area level by taking the 
 
 ---
 ## Figures
-
+| Figures | Description |
+| ---- | ---- |
 | `Fig1_MAG_choropleth_DB.png` | Block-level MAG map with transit-void zones |
 | `Fig2_CIMD_4panel.png` | Four CIMD deprivation dimensions across Calgary CMA |
 | `Fig3_bivariate_MAG_EconDep.png` | Bivariate map: MAG × economic dependency |
